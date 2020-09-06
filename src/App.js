@@ -4,6 +4,7 @@ import { Card, CardGrid, Container, Header } from "./Elements";
 import "./App.css";
 
 import Modal from './Modal'
+import Accordion from './Accordion'
 import Menu from "./Menu";
 import blue from "./blue.png";
 import purp from "./purp.png";
@@ -24,8 +25,8 @@ function App() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      animate={{ opacity: [0, 1, 0, 1] }}
+      transition={{ duration: 5, times: [0, 0.2, 0.3, 1] }}
     >
       <Header>
         <Menu />
@@ -49,7 +50,7 @@ function App() {
           Toggle
         </button>
         <input type="range" min="-100" max="100" value={value} onChange={e => setValue(e.target.value)} />
-
+        <Accordion />
         <Modal isToggled={isToggled} setToggle={setToggle}>
           <Card style={{ background: "var(--black)" }}>
             <h3>Some card</h3>
