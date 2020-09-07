@@ -5,6 +5,7 @@ import "./App.css";
 
 import Modal from './Modal'
 import Accordion from './Accordion'
+import Nav from './Nav'
 import Menu from "./Menu";
 import blue from "./blue.png";
 import purp from "./purp.png";
@@ -14,6 +15,7 @@ import green from "./green.png";
 function App() {
   const [value, setValue] = useState(0)
   const [isToggled, setToggle] = useState(false)
+  const [isNavOpen, setIsNavOpen] = useState(false)
 
   // By default all transforms are 3d.
   // You should only animate transform and opacity.
@@ -32,7 +34,8 @@ function App() {
     // transition={{ duration: 5, times: [0, 0.2, 0.3, 1] }}
     >
       <Header>
-        <Menu />
+        <Menu onClick={() => setIsNavOpen(true)} />
+        <Nav isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
         <h1>Header</h1>
       </Header>
       <Container>
