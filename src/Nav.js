@@ -7,6 +7,21 @@ const variants = {
   closed: { x: '-100%' }
 }
 
+const liVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: 0.2
+    }
+  },
+  closed: { y: -20, opacity: 0 },
+}
+
+const links = [
+  "one", "two", "three", "four"
+]
+
 const Nav = ({ isNavOpen, setIsNavOpen }) => {
   return (
     <MenuNav
@@ -17,10 +32,11 @@ const Nav = ({ isNavOpen, setIsNavOpen }) => {
     >
       <button onClick={() => setIsNavOpen(false)}>Close</button>
       <ul>
-        <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
+        {links.map(link => (
+          <motion.li variants={liVariants} key={link}>
+            <a href="#">{link}</a>
+          </motion.li>
+        ))}
       </ul>
     </MenuNav >
   )
@@ -43,11 +59,17 @@ const MenuNav = styled(motion.nav)`
     margin: 0;
   }
   li {
-    margin: 0;
+    margin: 0 0 1rem;
     padding: 0;
     font-size: 24px;
     a {
+      text-decoration: none;
       color: white;
+      border-bottom: 2px transparent solid;
+      transition: 0.3s ease border;
+      &:hover {
+        border-bottom: 2px var(--blue) solid;
+      }
     }
   }
 `

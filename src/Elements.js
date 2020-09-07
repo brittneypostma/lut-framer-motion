@@ -13,6 +13,7 @@ export const Header = styled.header`
   }
   h1 {
     font-size: 1rem;
+    margin-left: 20px;
   }
 `;
 
