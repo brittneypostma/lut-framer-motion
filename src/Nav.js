@@ -7,13 +7,34 @@ const variants = {
   closed: { x: '-100%' }
 }
 
-const liVariants = {
+const buttonVariants = {
   open: {
-    y: 0,
-    opacity: 1,
+    rotate: 180,
+    x: 0,
     transition: {
       delay: 0.2
     }
+  },
+  closed: {
+    rotate: -180,
+    x: -20
+  }
+}
+
+const ulVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  },
+  closed: {},
+}
+
+const liVariants = {
+  open: {
+    y: 0,
+    opacity: 1
   },
   closed: { y: -20, opacity: 0 },
 }
@@ -30,14 +51,19 @@ const Nav = ({ isNavOpen, setIsNavOpen }) => {
       animate={isNavOpen ? 'open' : 'closed'}
       transition={{ damping: 300 }}
     >
-      <button onClick={() => setIsNavOpen(false)}>Close</button>
-      <ul>
+      <Button
+        role="button"
+        variants={buttonVariants}
+        onClick={() => setIsNavOpen(false)}>
+        {'\u2715'}
+      </Button>
+      <motion.ul variants={ulVariants}>
         {links.map(link => (
           <motion.li variants={liVariants} key={link}>
             <a href="#">{link}</a>
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </MenuNav >
   )
 }
@@ -49,14 +75,14 @@ const MenuNav = styled(motion.nav)`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 20vw;
   height: 100vh;
   background: var(--black);
   padding: 40px;
   ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 20px 0 0;
   }
   li {
     margin: 0 0 1rem;
@@ -71,5 +97,24 @@ const MenuNav = styled(motion.nav)`
         border-bottom: 2px var(--blue) solid;
       }
     }
+  }
+`
+
+const Button = styled(motion.div)`
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 36px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  &:focus {
+    box-shadow: 1px 0 0 0 white, 
+                -1px 0 0 0 white,
+                0 1px 0 0 white,
+                0 -1px 0 0 white
+                ;
   }
 `
