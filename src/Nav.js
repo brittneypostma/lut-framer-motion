@@ -4,7 +4,12 @@ import { motion } from 'framer-motion'
 
 const variants = {
   open: { x: 0 },
-  closed: { x: '-100%' }
+  closed: {
+    x: '-100%',
+    transition: {
+      delay: 0.1
+    }
+  }
 }
 
 const buttonVariants = {
@@ -23,12 +28,19 @@ const buttonVariants = {
 
 const ulVariants = {
   open: {
+    // scales base size
+    // scale: 1.05,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2
+      delayChildren: 0.2,
+      // staggerDirection: 1, // 1 forwards, -1 backwards
+      // when: "afterChildren" // afterChildren, beforeChildren
     }
   },
-  closed: {},
+  closed: {
+    // scale to start from
+    // scale: 1
+  },
 }
 
 const liVariants = {
