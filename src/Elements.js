@@ -23,6 +23,8 @@ export const Container = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 60px;
+  display: grid;
+  gap: 2rem;
 `;
 
 export const CardGrid = styled.div`

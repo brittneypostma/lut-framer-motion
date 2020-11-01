@@ -5,3 +5,11 @@
   --black: #3b2c41;
   --green: #a3ffc1;
 }
+
+img {
+  pointer-events: none;
+}
+
+body {
+  overflow-x: hidden;
+}
